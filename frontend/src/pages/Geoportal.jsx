@@ -4,7 +4,14 @@ import TopBar from '../components/TopBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import api from '../api/axios';
-import { Map, Layers, BookOpen, Globe, ChevronRight, Home, Phone, Database } from 'lucide-react';
+import {
+  Map, Layers, BookOpen, Globe, ChevronRight, Home, Phone, Database,
+} from 'lucide-react';
+import Kebencanaan from './geoportal/sektor/kebencanaan';
+import Kependudukan from './geoportal/sektor/kependudukan';
+import Pertanian from './geoportal/sektor/pertanian';
+import Perikanan from './geoportal/sektor/perikanan';
+import Perkebunan from './geoportal/sektor/perkebunan';
 
 const layanan = [
   {
@@ -196,6 +203,30 @@ export default function Geoportal() {
           </div>
         </aside>
       </main>
+
+      <section className="w-full bg-white border-y border-[#d3d9df]" aria-labelledby="judul-layanan-sektor">
+        <div className="max-w-[1200px] mx-auto px-4 py-10">
+          <div className="mb-6">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#a17e2d]">
+              Pusat Layanan
+            </p>
+            <h2 id="judul-layanan-sektor" className="mt-1 text-[22px] font-semibold text-[#14365d]">
+              Data tematik per sektor
+            </h2>
+            <p className="mt-2 max-w-3xl text-[14px] leading-relaxed text-[#4b5660]">
+              Telusuri informasi geospasial sektoral Pemerintah Aceh. Ketersediaan hasil mengikuti dataset yang telah dipublikasikan di katalog.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Kebencanaan />
+            <Kependudukan />
+            <Pertanian />
+            <Perikanan />
+            <Perkebunan />
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

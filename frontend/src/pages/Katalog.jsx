@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -10,14 +11,16 @@ import {
 } from 'lucide-react';
 
 export default function Katalog() {
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get('search') || '';
   const [datasets, setDatasets] = useState([]);
   const [skpds, setSkpds] = useState([]);
   const [categories, setCategories] = useState([]);
   
   // State Filter & Pagination
   const [viewMode, setViewMode] = useState('Layer');
-  const [search, setSearch] = useState('');
-  const [searchInput, setSearchInput] = useState(''); // Untuk input sementara sebelum di-enter
+  const [search, setSearch] = useState(initialSearch);
+  const [searchInput, setSearchInput] = useState(initialSearch); // Untuk input sementara sebelum di-enter
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSkpd, setSelectedSkpd] = useState('');
   const [page, setPage] = useState(1);
