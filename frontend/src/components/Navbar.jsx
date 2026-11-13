@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const submenuGeoportal = [
-  { label: 'Pusat Layanan', to: '/geoportal' },
+  { label: 'Pusat Layanan', to: '/geoportal#pusat-layanan' },
   { label: 'WebGIS Viewer', to: '/webgis' },
   { label: 'Katalog Dataset', to: '/katalog' },
   { label: 'Story Maps', to: '/story-maps' },
@@ -32,11 +32,10 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState(false);
 
-  // Tutup menu mobile saat pindah halaman
-  useEffect(() => {
+  const closeMobileMenu = () => {
     setMobileOpen(false);
     setMobileSub(false);
-  }, [pathname]);
+  };
 
   const isActive = (to) => to !== '#' && pathname === to;
 
@@ -69,7 +68,7 @@ export default function Navbar() {
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="flex h-[72px] items-stretch justify-between">
             {/* Logo & nama */}
-            <Link to="/" className="flex items-center gap-3 py-2">
+            <Link to="/" onClick={closeMobileMenu} className="flex items-center gap-3 py-2">
               <img src="/images/logo-aceh.svg" alt="Logo Aceh" className="h-11 w-auto" />
               <div className="leading-tight">
                 <span className="block text-[20px] font-bold tracking-wide text-slate-900">
@@ -105,6 +104,7 @@ export default function Navbar() {
                           <li key={sub.label}>
                             <Link
                               to={sub.to}
+                              onClick={closeMobileMenu}
                               className="block border-l-[3px] border-transparent px-4 py-2.5 text-[14px] text-slate-700 transition-colors duration-150 hover:border-blue-700 hover:bg-slate-50 hover:text-blue-800"
                             >
                               {sub.label}
@@ -118,6 +118,7 @@ export default function Navbar() {
                   <li key={item.label} className="flex items-stretch">
                     <Link
                       to={item.to}
+                      onClick={closeMobileMenu}
                       aria-current={isActive(item.to) ? 'page' : undefined}
                       className={linkClass(item.to)}
                     >
@@ -176,6 +177,7 @@ export default function Navbar() {
                           <li key={sub.label}>
                             <Link
                               to={sub.to}
+                              onClick={closeMobileMenu}
                               className="block px-8 py-2.5 text-[14px] text-slate-600 hover:text-blue-800"
                             >
                               {sub.label}
@@ -189,6 +191,7 @@ export default function Navbar() {
                   <li key={item.label} className="border-b border-slate-100">
                     <Link
                       to={item.to}
+                      onClick={closeMobileMenu}
                       aria-current={isActive(item.to) ? 'page' : undefined}
                       className={`block border-l-[3px] px-4 py-3 text-[15px] font-medium ${
                         isActive(item.to)

@@ -1,13 +1,13 @@
-import { Fish } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import SectorCard from '../SectorCard';
 
-export default function Perikanan() {
+export default function Pendidikan() {
   return (
     <SectorCard
-      title="Perikanan"
-      description="Lokasi pelabuhan perikanan (TPI/PPS Lampulo), volume tangkapan ikan laut, dan data budidaya tambak."
-      search="perikanan"
-      icon={Fish}
+      title="Pendidikan"
+      description="Data tematik pendidikan, termasuk sebaran fasilitas dan informasi satuan pendidikan."
+      search="pendidikan"
+      icon={BookOpen}
     />
   );
 }

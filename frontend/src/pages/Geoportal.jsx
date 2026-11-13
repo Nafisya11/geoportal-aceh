@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -10,8 +10,8 @@ import {
 import Kebencanaan from './geoportal/sektor/kebencanaan';
 import Kependudukan from './geoportal/sektor/kependudukan';
 import Pertanian from './geoportal/sektor/pertanian';
-import Perikanan from './geoportal/sektor/perikanan';
-import Perkebunan from './geoportal/sektor/perkebunan';
+import Kesehatan from './geoportal/sektor/kesehatan';
+import Pendidikan from './geoportal/sektor/pendidikan';
 
 const layanan = [
   {
@@ -45,6 +45,7 @@ const layanan = [
 ];
 
 export default function Geoportal() {
+  const { hash, key } = useLocation();
   // State untuk data statistik dinamis
   const [stats, setStats] = useState({
     total_datasets: 0,
@@ -60,6 +61,19 @@ export default function Geoportal() {
       })
       .catch((err) => console.error("Gagal memuat statistik:", err));
   }, []);
+
+  useEffect(() => {
+    if (hash !== '#pusat-layanan') return undefined;
+
+    const scrollTimer = window.setTimeout(() => {
+      document.getElementById('pusat-layanan')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 350);
+
+    return () => window.clearTimeout(scrollTimer);
+  }, [hash, key]);
 
   // Data statistik yang akan ditampilkan di sidebar
   const statistik = [
@@ -204,7 +218,10 @@ export default function Geoportal() {
         </aside>
       </main>
 
-      <section className="w-full bg-white border-y border-[#d3d9df]" aria-labelledby="judul-layanan-sektor">
+      <section
+        className="w-full bg-white border-y border-[#d3d9df]"
+        aria-labelledby="judul-layanan-sektor"
+      >
         <div className="max-w-[1200px] mx-auto px-4 py-10">
           <div className="mb-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#a17e2d]">
@@ -218,12 +235,15 @@ export default function Geoportal() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            id="pusat-layanan"
+            className="grid scroll-mt-44 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
             <Kebencanaan />
             <Kependudukan />
             <Pertanian />
-            <Perikanan />
-            <Perkebunan />
+            <Kesehatan />
+            <Pendidikan />
           </div>
         </div>
       </section>

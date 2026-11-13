@@ -1,13 +1,13 @@
-import { Leaf } from 'lucide-react';
+import { HeartPulse } from 'lucide-react';
 import SectorCard from '../SectorCard';
 
-export default function Perkebunan() {
+export default function Kesehatan() {
   return (
     <SectorCard
-      title="Perkebunan"
-      description="Sebaran kebun Kopi Gayo, kelapa sawit, nilam Aceh, dan luas izin HGU."
-      search="perkebunan"
-      icon={Leaf}
+      title="Kesehatan"
+      description="Data tematik kesehatan, termasuk sebaran fasilitas dan informasi layanan kesehatan."
+      search="kesehatan"
+      icon={HeartPulse}
     />
   );
 }
